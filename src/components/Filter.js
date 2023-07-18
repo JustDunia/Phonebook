@@ -2,6 +2,7 @@ import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilter } from 'redux/filterSlice';
 import { selectFilter } from 'redux/selectors';
+import { TextField } from '@mui/material';
 
 export const Filter = () => {
   const filterInputId = nanoid();
@@ -14,15 +15,15 @@ export const Filter = () => {
   };
 
   return (
-    <div>
-      <label htmlFor={filterInputId}>Find contacts by name</label>
-      <input
-        type="text"
-        id={filterInputId}
-        value={filterValue}
-        onChange={e => handleFilterChange(e)}
-        name="filter"
-      />
-    </div>
+    <TextField
+      margin="normal"
+      fullWidth
+      id={filterInputId}
+      value={filterValue}
+      label="Find contacts by name"
+      name="filter"
+      autoFocus
+      onChange={e => handleFilterChange(e)}
+    />
   );
 };

@@ -1,37 +1,25 @@
-import { ContactForm } from './ContactForm/ContactForm';
-import { Filter } from './Filter';
-import { ContactList } from './ContactList/ContactList';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts, selectError, selectIsLoading } from 'redux/selectors';
-import { useEffect } from 'react';
-import { fetchContacts } from 'redux/operations';
+import { Routes, Route } from 'react-router-dom';
+import { SharedLayout } from './SharedLayout';
+import { lazy } from 'react';
 
 export const App = () => {
-  const contacts = useSelector(selectContacts);
-  const isLoding = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
+  const NotFound = lazy(() => import('./NotFound'));
+  const Home = lazy(() => import('../pages/Home'));
+  const Contacts = lazy(() => import('../pages/Contacts'));
+  const Register = lazy(() => import('../pages/Register'));
+  const Login = lazy(() => import('../pages/Login'));
 
   return (
-    <>
-      <h1>PhoneBook</h1>
-      <ContactForm />
-      {error && <p>{error}</p>}
-      {contacts.length > 0 && (
-        <>
-          <h2>Contacts:</h2>
-          <Filter />
-          <ContactList />
-        </>
-      )}
-      {!error && contacts.length === 0 && !isLoding && (
-        <p>Your phonebook is empty.</p>
-      )}
-      {isLoding && <p>Loading...</p>}
-    </>
+    <div>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Home />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/contacts" element={<Contacts />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+    </div>
   );
 };
