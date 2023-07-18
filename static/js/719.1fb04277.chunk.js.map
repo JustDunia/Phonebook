@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/719.1fb04277.chunk.js","mappings":"2JAIA,UAJiB,WACf,OAAOA,EAAAA,EAAAA,KAAA,MAAAC,SAAI,sCACb,C","sources":["components/NotFound.js"],"sourcesContent":["const NotFound = () => {\n  return <h1>I'm a teapot. Try another address.</h1>;\n};\n\nexport default NotFound;\n"],"names":["_jsx","children"],"sourceRoot":""}
