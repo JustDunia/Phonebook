@@ -15,10 +15,10 @@ export const SharedLayout = () => {
           </Typography>
 
           {/* //not logged */}
-          <Button href="/login" color="inherit">
+          <Button href="login" color="inherit">
             Login
           </Button>
-          <Button href="/register" color="inherit">
+          <Button href="register" color="inherit">
             Register
           </Button>
 
