@@ -1,10 +1,14 @@
-import { ContactForm } from 'components/ContactForm/ContactForm';
+import { ContactForm } from 'components/ContactForm';
 import { Filter } from 'components/Filter';
-import { ContactList } from 'components/ContactList/ContactList';
+import { ContactList } from 'components/ContactList';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts, selectError, selectIsLoading } from 'redux/selectors';
+import {
+  selectContacts,
+  selectError,
+  selectIsLoading,
+} from 'redux/contacts/selectors';
 import { useEffect } from 'react';
-import { fetchContacts } from 'redux/operations';
+import { fetchContacts } from 'redux/contacts/operations';
 import { Container } from '@mui/system';
 import { Box } from '@mui/system';
 import { Typography } from '@mui/material';
