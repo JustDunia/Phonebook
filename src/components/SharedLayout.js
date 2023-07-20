@@ -39,7 +39,11 @@ export const SharedLayout = () => {
               >
                 Hello, {userData.name}
               </Typography>
-              <Button onClick={() => dispatch(logOut())} color="inherit">
+              <Button
+                onClick={() => dispatch(logOut())}
+                color="inherit"
+                href="/"
+              >
                 Logout
               </Button>
             </>
