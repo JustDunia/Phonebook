@@ -30,11 +30,11 @@ const Home = () => {
         Please Sign in or register new user
       </Typography>
       <Box sx={{ mt: 5 }}>
-        <Button href="/login" type="button" variant="contained" sx={{ mt: 3 }}>
+        <Button href="login" type="button" variant="contained" sx={{ mt: 3 }}>
           Sign In
         </Button>
         <Button
-          href="/register"
+          href="register"
           type="button"
           variant="contained"
           sx={{ mt: 3, ml: 1 }}

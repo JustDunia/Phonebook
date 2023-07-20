@@ -22,10 +22,10 @@ export const SharedLayout = () => {
 
           {!isLoggedIn ? (
             <>
-              <Button href="/login" color="inherit" sx={{ marginRight: 3 }}>
+              <Button href="login" color="inherit" sx={{ marginRight: 3 }}>
                 Login
               </Button>
-              <Button href="/register" color="inherit">
+              <Button href="register" color="inherit">
                 Register
               </Button>
             </>
