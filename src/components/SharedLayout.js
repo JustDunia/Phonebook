@@ -22,17 +22,22 @@ export const SharedLayout = () => {
 
           {!isLoggedIn ? (
             <>
-              <Button href="login" color="inherit">
+              <Button href="/login" color="inherit" sx={{ marginRight: 3 }}>
                 Login
               </Button>
-              <Button href="register" color="inherit">
+              <Button href="/register" color="inherit">
                 Register
               </Button>
             </>
           ) : (
             <>
-              <Typography variant="button" component="p" color="inherit">
-                {userData.name}
+              <Typography
+                variant="button"
+                component="p"
+                color="inherit"
+                sx={{ marginRight: 3 }}
+              >
+                Hello, {userData.name}
               </Typography>
               <Button onClick={() => dispatch(logOut())} color="inherit">
                 Logout
@@ -41,11 +46,10 @@ export const SharedLayout = () => {
           )}
         </Toolbar>
       </AppBar>
-      <main>
-        <Suspense fallback={<p>Loading...</p>}>
-          <Outlet />
-        </Suspense>
-      </main>
+
+      <Suspense fallback={<p>Loading...</p>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };

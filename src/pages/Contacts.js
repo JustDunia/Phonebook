@@ -10,7 +10,6 @@ import {
 import { useEffect } from 'react';
 import { fetchContacts } from 'redux/contacts/operations';
 import { Container } from '@mui/system';
-import { Box } from '@mui/system';
 import { Typography } from '@mui/material';
 
 const Contacts = () => {
@@ -24,36 +23,34 @@ const Contacts = () => {
   }, [dispatch]);
 
   return (
-    <>
-      <Container component="main" maxWidth="xs">
-        <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <ContactForm />
-          {error && <p>{error}</p>}
-          {contacts.length > 0 && (
-            <>
-              <Typography component="h2" variant="h5">
-                Contacts
-              </Typography>
-              <Filter />
-              <ContactList />
-            </>
-          )}
-          {!error && contacts.length === 0 && !isLoding && (
-            <Typography component="h2" variant="h5">
-              Your phonebook is empty.
-            </Typography>
-          )}
-          {isLoding && <p>Loading...</p>}
-        </Box>
-      </Container>
-    </>
+    <Container
+      component="main"
+      maxWidth="xs"
+      sx={{
+        marginTop: 8,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
+      <ContactForm />
+      {error && <p>{error}</p>}
+      {contacts.length > 0 && (
+        <>
+          <Typography component="h2" variant="h5">
+            Contacts
+          </Typography>
+          <Filter />
+          <ContactList />
+        </>
+      )}
+      {!error && contacts.length === 0 && !isLoding && (
+        <Typography component="h2" variant="h5">
+          Your phonebook is empty.
+        </Typography>
+      )}
+      {isLoding && <p>Loading...</p>}
+    </Container>
   );
 };
 
