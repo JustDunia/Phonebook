@@ -4,8 +4,14 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import { useAuth } from 'hooks';
+import { useDispatch } from 'react-redux';
+import { logOut } from 'redux/authorization/operations';
 
 export const SharedLayout = () => {
+  const { isLoggedIn, userData } = useAuth();
+  const dispatch = useDispatch();
+
   return (
     <div>
       <AppBar position="static">
@@ -14,21 +20,25 @@ export const SharedLayout = () => {
             PhoneBook
           </Typography>
 
-          {/* //not logged */}
-          <Button href="login" color="inherit">
-            Login
-          </Button>
-          <Button href="register" color="inherit">
-            Register
-          </Button>
-
-          {/* //logged */}
-          <Typography variant="button" component="p" color="inherit">
-            Mail@mail.pl
-          </Typography>
-          <Button href="/" color="inherit">
-            Logout
-          </Button>
+          {!isLoggedIn ? (
+            <>
+              <Button href="login" color="inherit">
+                Login
+              </Button>
+              <Button href="register" color="inherit">
+                Register
+              </Button>
+            </>
+          ) : (
+            <>
+              <Typography variant="button" component="p" color="inherit">
+                {userData.name}
+              </Typography>
+              <Button onClick={() => dispatch(logOut())} color="inherit">
+                Logout
+              </Button>
+            </>
+          )}
         </Toolbar>
       </AppBar>
       <main>

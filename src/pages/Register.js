@@ -7,16 +7,21 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import { useDispatch } from 'react-redux';
+import { signUp } from 'redux/authorization/operations';
 
 const Register = () => {
+  const dispatch = useDispatch();
+
   const handleSubmit = event => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      username: data.get('username'),
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    const formData = new FormData(event.currentTarget);
+    const userData = {
+      name: formData.get('username'),
+      email: formData.get('email'),
+      password: formData.get('password'),
+    };
+    dispatch(signUp(userData));
   };
 
   return (
@@ -36,7 +41,7 @@ const Register = () => {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+        <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
           <TextField
             margin="normal"
             required
@@ -46,6 +51,9 @@ const Register = () => {
             name="username"
             autoComplete="username"
             autoFocus
+            inputProps={{
+              pattern: '[a-zA-Z]{1,15}',
+            }}
           />
           <TextField
             margin="normal"
@@ -55,6 +63,7 @@ const Register = () => {
             label="Email Address"
             name="email"
             autoComplete="email"
+            inputProps={{ type: 'email' }}
           />
           <TextField
             margin="normal"
@@ -65,6 +74,7 @@ const Register = () => {
             type="password"
             id="password"
             autoComplete="current-password"
+            inputProps={{ minLength: 7 }}
           />
           <Button
             type="submit"
